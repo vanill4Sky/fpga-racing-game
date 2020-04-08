@@ -51,7 +51,7 @@ ARCHITECTURE behavioral OF adxl345_i2c_sch_tb IS
    SIGNAL Z	:	STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 			   -- Clock period definitions
-   constant Clk_period : time := 40 ns;
+   constant Clk_period : time := 20 ns;
 
 BEGIN
 
@@ -82,14 +82,10 @@ BEGIN
    process
       variable bAddr  : std_logic_vector( 7 downto 0 );             -- I2C adress received as the first byte
       variable bWrite : std_logic_vector( 7 downto 0 );             -- byte received in write transfers
-      variable bRead  : std_logic_vector( 7 downto 0 ) := X"00";    -- byte transmitted in read transfers
+      variable bRead  : std_logic_vector( 7 downto 0 ) := X"47";    -- byte transmitted in read transfers
       variable Ack : std_logic;
       variable L: line;	-- simulation messages (textio)
-   begin
-		Reset <= '1';
-		wait for 200 ns;
-		Reset <= '0';
-	
+   begin	
       SDA <= 'Z';
       loop
          -- wait for start condition

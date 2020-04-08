@@ -30,24 +30,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity adxl345_driver is
-    Port ( Reset : in  STD_LOGIC;
-           Clk : in  STD_LOGIC;
-           FIFO_DO : in  STD_LOGIC_VECTOR (7 downto 0);
-           FIFO_Empty : in  STD_LOGIC;
-           FIFO_Full : in  STD_LOGIC;
+    Port ( FIFO_Empty : in  STD_LOGIC;
+			  FIFO_Full : in  STD_LOGIC;
+			  FIFO_DO : in  STD_LOGIC_VECTOR (7 downto 0);
+			  Busy : in  STD_LOGIC;
 			  DataRate : in  STD_LOGIC_VECTOR (3 downto 0);
-           Busy : in  STD_LOGIC;
-           Go : out  STD_LOGIC;
-           FIFO_Push : out  STD_LOGIC;
-           FIFO_Pop : out  STD_LOGIC;
-           FIFO_DI : out  STD_LOGIC_VECTOR (7 downto 0);
+			  Reset : in  STD_LOGIC;
+			  Clk : in  STD_LOGIC;
+			  Go : out  STD_LOGIC;
+			  Address : out  STD_LOGIC_VECTOR (7 downto 0);
 			  ReadCnt : out STD_LOGIC_VECTOR (3 downto 0);
-           Address : out  STD_LOGIC_VECTOR (7 downto 0);
-           Device_ID : out  STD_LOGIC_VECTOR (7 downto 0);
-           X : out  STD_LOGIC_VECTOR (15 downto 0);
-           Y : out  STD_LOGIC_VECTOR (15 downto 0);
-           Z : out  STD_LOGIC_VECTOR (15 downto 0);
-           NewData : out  STD_LOGIC);
+			  FIFO_Pop : out  STD_LOGIC;
+			  FIFO_Push : out  STD_LOGIC;
+			  FIFO_DI : out  STD_LOGIC_VECTOR (7 downto 0); 
+		     NewData : out  STD_LOGIC;
+			  Device_ID : out  STD_LOGIC_VECTOR (7 downto 0);
+			  X : out  STD_LOGIC_VECTOR (15 downto 0);
+			  Y : out  STD_LOGIC_VECTOR (15 downto 0);
+			  Z : out  STD_LOGIC_VECTOR (15 downto 0));
+
 end adxl345_driver;
 
 architecture Behavioral of adxl345_driver is
