@@ -20,9 +20,9 @@ use ieee.std_logic_textio.all;
 LIBRARY std;
 use std.textio.all;
 
-ENTITY adxl345_i2c_adxl345_i2c_sch_tb IS
-END adxl345_i2c_adxl345_i2c_sch_tb;
-ARCHITECTURE behavioral OF adxl345_i2c_adxl345_i2c_sch_tb IS 
+ENTITY adxl345_i2c_sch_tb IS
+END adxl345_i2c_sch_tb;
+ARCHITECTURE behavioral OF adxl345_i2c_sch_tb IS 
 
    COMPONENT adxl345_i2c
    PORT( DataRate	:	IN	STD_LOGIC_VECTOR (3 DOWNTO 0); 

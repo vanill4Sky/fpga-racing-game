@@ -57,11 +57,14 @@ architecture Behavioral of adxl345_driver is
 		push_addr_id, send_addr_id, busy_send_addr_id, receive_id, busy_receive_id, read_id, pop_id, store_id,
 		stop
 	);
+	
+	subtype byte_t is std_logic_vector(7 downto 0);
 
-	constant WRITE_ADDRESS 	: std_logic_vector(7 downto 0) := X"3A";
-	constant READ_ADDRESS 	: std_logic_vector(7 downto 0) := X"3B";
-	constant ID_REG_ADDRESS : std_logic_vector(7 downto 0) := X"00";
-
+	constant WRITE_ADDRESS 				: byte_t := X"3A";
+	constant READ_ADDRESS 				: byte_t := X"3B";
+	constant DEVID_REG_ADDRESS 		: byte_t := X"00";
+	constant BW_RATE_REG_ADDRESS 		: byte_t := X"2C";
+	constant POWER_CTL_REG_ADDRESS 	: byte_t := X"2D";
 	
 	signal state : state_t;
 	signal next_state: state_t;
@@ -127,7 +130,7 @@ begin
 		end if;
 	end process read_device_id;
 	
-	FIFO_DI 		<=	ID_REG_ADDRESS when state = push_addr_id or next_state = push_addr_id else
+	FIFO_DI 		<=	DEVID_REG_ADDRESS when state = push_addr_id or next_state = push_addr_id else
 						X"00";
 	FIFO_Push 	<= '1' when state = push_addr_id else
 						'0';
