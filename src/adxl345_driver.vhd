@@ -85,7 +85,7 @@ begin
 		end if;
 	end process fsm_main;
 	
-	fsm_transition : process(state, Busy)
+	fsm_transition : process(state, Busy, FIFO_Empty)
 	begin
 		next_state <= state;
 		

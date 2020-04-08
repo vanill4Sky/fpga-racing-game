@@ -1,0 +1,21 @@
+ISim log file
+Running: C:\Users\foxglove\Desktop\fpga-racing-game\adxl345_i2c_sch_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_i2c_sch_tb_isim_beh.wdb 
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 1ms
+[I2C 1.3101 us] START condition
+[I2C 21.9301 us] address byte: 3A
+[I2C 44.4301 us] byte received: 00
+[I2C 49.4301 us] STOP condition
+[I2C 51.3501 us] START condition
+[I2C 71.9701 us] address byte: 3B
+[I2C 97.6051 us] byte transmitted: 47, NACK in response

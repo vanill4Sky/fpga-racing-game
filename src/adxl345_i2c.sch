@@ -27,7 +27,6 @@
         <signal name="XLXN_74" />
         <signal name="XLXN_75" />
         <signal name="XLXN_76(7:0)" />
-        <signal name="XLXN_88(3:0)" />
         <port polarity="Input" name="DataRate(3:0)" />
         <port polarity="BiDirectional" name="SDA" />
         <port polarity="BiDirectional" name="SCL" />
@@ -63,7 +62,7 @@
             <line x2="464" y1="32" y2="32" x1="400" />
         </blockdef>
         <blockdef name="adxl345_driver">
-            <timestamp>2020-4-7T15:5:17</timestamp>
+            <timestamp>2020-4-8T10:3:22</timestamp>
             <rect width="320" x="64" y="-704" height="704" />
             <line x2="448" y1="-672" y2="-672" x1="384" />
             <rect width="64" x="384" y="-236" height="24" />
@@ -111,24 +110,24 @@
             <blockpin signalname="NACK" name="NACK" />
         </block>
         <block symbolname="adxl345_driver" name="XLXI_2">
+            <blockpin signalname="XLXN_74" name="FIFO_Empty" />
+            <blockpin signalname="XLXN_75" name="FIFO_Full" />
+            <blockpin signalname="XLXN_63" name="Busy" />
+            <blockpin signalname="Reset" name="Reset" />
+            <blockpin signalname="Clk" name="Clk" />
+            <blockpin signalname="XLXN_76(7:0)" name="FIFO_DO(7:0)" />
+            <blockpin signalname="DataRate(3:0)" name="DataRate(3:0)" />
             <blockpin signalname="XLXN_1" name="Go" />
+            <blockpin signalname="XLXN_41" name="FIFO_Pop" />
+            <blockpin signalname="XLXN_42" name="FIFO_Push" />
+            <blockpin signalname="NewData" name="NewData" />
+            <blockpin signalname="XLXN_39(7:0)" name="Address(7:0)" />
+            <blockpin signalname="XLXN_40(3:0)" name="ReadCnt(3:0)" />
+            <blockpin signalname="XLXN_43(7:0)" name="FIFO_DI(7:0)" />
             <blockpin signalname="Device_ID(7:0)" name="Device_ID(7:0)" />
             <blockpin signalname="X(15:0)" name="X(15:0)" />
             <blockpin signalname="Y(15:0)" name="Y(15:0)" />
             <blockpin signalname="Z(15:0)" name="Z(15:0)" />
-            <blockpin signalname="XLXN_39(7:0)" name="Address(7:0)" />
-            <blockpin signalname="XLXN_41" name="FIFO_Pop" />
-            <blockpin signalname="XLXN_40(3:0)" name="ReadCnt(3:0)" />
-            <blockpin signalname="NewData" name="NewData" />
-            <blockpin signalname="XLXN_43(7:0)" name="FIFO_DI(7:0)" />
-            <blockpin signalname="XLXN_42" name="FIFO_Push" />
-            <blockpin signalname="XLXN_74" name="FIFO_Empty" />
-            <blockpin signalname="XLXN_75" name="FIFO_Full" />
-            <blockpin signalname="XLXN_76(7:0)" name="FIFO_DO(7:0)" />
-            <blockpin signalname="Clk" name="Clk" />
-            <blockpin signalname="XLXN_63" name="Busy" />
-            <blockpin signalname="DataRate(3:0)" name="DataRate(3:0)" />
-            <blockpin signalname="Reset" name="Reset" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
