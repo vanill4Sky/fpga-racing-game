@@ -53,10 +53,15 @@ end adxl345_driver;
 architecture Behavioral of adxl345_driver is
 
 	type state_t is (
-		Init, 
-		PushAddrID, SendAddrID, BusySendAddrID, ReceiveID, BusyReceiveID, ReadID, PopID, StoreID,
-		Stop
+		init, 
+		push_addr_id, send_addr_id, busy_send_addr_id, receive_id, busy_receive_id, read_id, pop_id, store_id,
+		stop
 	);
+
+	constant WRITE_ADDRESS 	: std_logic_vector(7 downto 0) := X"3A";
+	constant READ_ADDRESS 	: std_logic_vector(7 downto 0) := X"3B";
+	constant ID_REG_ADDRESS : std_logic_vector(7 downto 0) := X"00";
+
 	
 	signal state : state_t;
 	signal next_state: state_t;
@@ -69,7 +74,7 @@ begin
 	begin
 		if rising_edge(Clk) then
 			if Reset = '1' then
-				state <= Init;
+				state <= init;
 			else
 				state <= next_state;
 			end if;
@@ -81,34 +86,34 @@ begin
 		next_state <= state;
 		
 		case state is
-			when Init =>
-				next_state <= PushAddrID;
-			when PushAddrID =>
-				next_state <= SendAddrID;
-			when SendAddrID =>
-				next_state <= BusySendAddrID;
-			when BusySendAddrID =>
+			when init =>
+				next_state <= push_addr_id;
+			when push_addr_id =>
+				next_state <= send_addr_id;
+			when send_addr_id =>
+				next_state <= busy_send_addr_id;
+			when busy_send_addr_id =>
 				if Busy = '0' then
-					next_state <= ReceiveID;
+					next_state <= receive_id;
 				end if;
-			when ReceiveID =>
-				next_state <= BusyReceiveID;
-			when BusyReceiveID =>
+			when receive_id =>
+				next_state <= busy_receive_id;
+			when busy_receive_id =>
 				if Busy = '0' then
-					next_state <= ReadID;
+					next_state <= read_id;
 				end if;
-			when ReadID =>
-            next_state <= PopID;
-         when PopID =>
-            next_state <= StoreID;
-         when StoreID =>
+			when read_id =>
+            next_state <= pop_id;
+         when pop_id =>
+            next_state <= store_id;
+         when store_id =>
             if FIFO_Empty = '1' then
-					next_state <= Stop;
+					next_state <= stop;
             else
-					next_state <= ReadID;
+					next_state <= read_id;
 				end if;
-			when Stop =>
-				next_state <= Stop;
+			when stop =>
+				next_state <= stop;
 		end case;
 		
 	end process fsm_transition;
@@ -116,24 +121,24 @@ begin
 	read_device_id : process(Clk, state, next_state)
 	begin
 		if rising_edge(Clk) then
-			if state = ReadID then
+			if state = read_id then
 				device_id_register <= FIFO_DO;
 			end if;
 		end if;
 	end process read_device_id;
 	
-	FIFO_DI 		<=	X"00" when state = PushAddrID or next_state = PushAddrID else
+	FIFO_DI 		<=	ID_REG_ADDRESS when state = push_addr_id or next_state = push_addr_id else
 						X"00";
-	FIFO_Push 	<= '1' when state = PushAddrID else
+	FIFO_Push 	<= '1' when state = push_addr_id else
 						'0';
-	Address 		<= X"3A" when state = SendAddrID or next_state = SendAddrID else
-						X"3B" when state = ReceiveID or next_state = ReceiveID else
+	Address 		<= WRITE_ADDRESS when state = send_addr_id or next_state = send_addr_id else
+						READ_ADDRESS when state = receive_id or next_state = receive_id else
 						X"00";
-	Go 			<= '1' when state = SendAddrID or state = ReceiveID else
+	Go 			<= '1' when state = send_addr_id or state = receive_id else
 						'0';
-	ReadCnt 		<= X"1" when state = ReceiveID or next_state = ReceiveID else
+	ReadCnt 		<= X"1" when state = receive_id or next_state = receive_id else
 						X"0";
-	FIFO_Pop 	<=	'1' when state = PopID else
+	FIFO_Pop 	<=	'1' when state = pop_id else
 						'0';
 	NewData 		<= '0';
 

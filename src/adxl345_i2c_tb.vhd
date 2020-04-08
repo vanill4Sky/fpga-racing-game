@@ -26,8 +26,8 @@ ARCHITECTURE behavioral OF adxl345_i2c_adxl345_i2c_sch_tb IS
 
    COMPONENT adxl345_i2c
    PORT( DataRate	:	IN	STD_LOGIC_VECTOR (3 DOWNTO 0); 
-          SDA	:	INOUT	STD_LOGIC := 'H'; 
-          SCL	:	INOUT	STD_LOGIC := 'H'; 
+          SDA	:	INOUT	STD_LOGIC; 
+          SCL	:	INOUT	STD_LOGIC; 
           NACK	:	OUT	STD_LOGIC; 
           Reset	:	IN	STD_LOGIC; 
           Clk	:	IN	STD_LOGIC; 
@@ -86,6 +86,10 @@ BEGIN
       variable Ack : std_logic;
       variable L: line;	-- simulation messages (textio)
    begin
+		Reset <= '1';
+		wait for 200 ns;
+		Reset <= '0';
+	
       SDA <= 'Z';
       loop
          -- wait for start condition
