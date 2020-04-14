@@ -56,6 +56,8 @@ architecture Behavioral of adxl345_driver is
 	type state_t is (
 		init, 
 		push_addr_id, send_addr_id, busy_send_addr_id, receive_id, busy_receive_id, read_id, pop_id, store_id,
+		push_addr_pc, push_data_pc, push_addr_bwr, push_data_bwr, send_config, busy_send_config,
+		
 		stop
 	);
 	
@@ -112,9 +114,23 @@ begin
             next_state <= store_id;
          when store_id =>
             if FIFO_Empty = '1' then
-					next_state <= stop;
+					next_state <= push_addr_pc;
             else
 					next_state <= read_id;
+				end if;
+			when push_addr_pc =>
+				next_state <= push_data_pc;
+			when push_data_pc =>
+				next_state <= push_addr_bwr;
+			when push_addr_bwr =>
+				next_state <= push_data_bwr;
+			when push_data_bwr =>
+				next_state <= send_config;
+			when send_config =>
+				next_state <= busy_send_config;
+			when busy_send_config =>
+				if Busy = '0' then
+					next_state <= stop;
 				end if;
 			when stop =>
 				next_state <= stop;
@@ -132,13 +148,19 @@ begin
 	end process read_device_id;
 	
 	FIFO_DI 		<=	DEVID_REG_ADDRESS when state = push_addr_id or next_state = push_addr_id else
+						POWER_CTL_REG_ADDRESS when state = push_addr_pc or next_state = push_addr_pc else
+						"00001000" when state = push_data_pc or next_state = push_data_pc else
+						BW_RATE_REG_ADDRESS when state = push_addr_bwr or next_state = push_addr_bwr else
+						"0000" & DataRate when state = push_data_bwr or next_state = push_data_bwr else
 						X"00";
-	FIFO_Push 	<= '1' when state = push_addr_id else
+	FIFO_Push 	<= '1' when state = push_addr_id or state = push_addr_pc or state = push_data_pc 
+							or state = push_addr_bwr or state = push_data_bwr else
 						'0';
-	Address 		<= WRITE_ADDRESS when state = send_addr_id or next_state = send_addr_id else
+	Address 		<= WRITE_ADDRESS when state = send_addr_id or next_state = send_addr_id
+							or state = send_config or next_state = send_config else
 						READ_ADDRESS when state = receive_id or next_state = receive_id else
 						X"00";
-	Go 			<= '1' when state = send_addr_id or state = receive_id else
+	Go 			<= '1' when state = send_addr_id or state = receive_id or state = send_config else
 						'0';
 	ReadCnt 		<= X"1" when state = receive_id or next_state = receive_id else
 						X"0";
