@@ -56,8 +56,8 @@ architecture Behavioral of adxl345_driver is
 	type state_t is (
 		init, 
 		push_addr_id, send_addr_id, busy_send_addr_id, receive_id, busy_receive_id, read_id, pop_id, store_id,
-		push_addr_pc, push_data_pc, push_addr_bwr, push_data_bwr, send_config, busy_send_config,
-		
+		push_addr_pc, push_data_pc, send_pc, busy_send_pc,
+		push_addr_bwr, push_data_bwr, send_bwr, busy_send_bwr,
 		stop
 	);
 	
@@ -68,6 +68,7 @@ architecture Behavioral of adxl345_driver is
 	constant DEVID_REG_ADDRESS 		: byte_t := X"00";
 	constant BW_RATE_REG_ADDRESS 		: byte_t := X"2C";
 	constant POWER_CTL_REG_ADDRESS 	: byte_t := X"2D";
+	constant DATAX0_REG_ADDRESS		: byte_t := X"32";
 	
 	signal state : state_t;
 	signal next_state: state_t;
@@ -92,6 +93,7 @@ begin
 		next_state <= state;
 		
 		case state is
+		-- get slave device id
 			when init =>
 				next_state <= push_addr_id;
 			when push_addr_id =>
@@ -118,20 +120,28 @@ begin
             else
 					next_state <= read_id;
 				end if;
+		-- configure accelerometer
 			when push_addr_pc =>
 				next_state <= push_data_pc;
 			when push_data_pc =>
-				next_state <= push_addr_bwr;
+				next_state <= send_pc;
+			when send_pc =>
+				next_state <= busy_send_pc;
+			when busy_send_pc =>
+				if Busy = '0' then
+					next_state <= push_addr_bwr;
+				end if;
 			when push_addr_bwr =>
 				next_state <= push_data_bwr;
 			when push_data_bwr =>
-				next_state <= send_config;
-			when send_config =>
-				next_state <= busy_send_config;
-			when busy_send_config =>
+				next_state <= send_bwr;
+			when send_bwr =>
+				next_state <= busy_send_bwr;
+			when busy_send_bwr =>
 				if Busy = '0' then
 					next_state <= stop;
 				end if;
+		-- read measurments
 			when stop =>
 				next_state <= stop;
 		end case;
@@ -157,10 +167,12 @@ begin
 							or state = push_addr_bwr or state = push_data_bwr else
 						'0';
 	Address 		<= WRITE_ADDRESS when state = send_addr_id or next_state = send_addr_id
-							or state = send_config or next_state = send_config else
+							or state = send_pc or next_state = send_pc 
+							or state = send_bwr or next_state = send_bwr else
 						READ_ADDRESS when state = receive_id or next_state = receive_id else
 						X"00";
-	Go 			<= '1' when state = send_addr_id or state = receive_id or state = send_config else
+	Go 			<= '1' when state = send_addr_id or state = receive_id or state = send_pc
+							or state = send_bwr else
 						'0';
 	ReadCnt 		<= X"1" when state = receive_id or next_state = receive_id else
 						X"0";
