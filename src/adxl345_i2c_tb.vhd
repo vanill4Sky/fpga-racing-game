@@ -28,7 +28,8 @@ ARCHITECTURE behavioral OF adxl345_i2c_sch_tb IS
    PORT( DataRate	:	IN	STD_LOGIC_VECTOR (3 DOWNTO 0); 
           SDA	:	INOUT	STD_LOGIC; 
           SCL	:	INOUT	STD_LOGIC; 
-          NACK	:	OUT	STD_LOGIC; 
+          NACK	:	OUT	STD_LOGIC;
+			 INT1 : in STD_LOGIC;
           Reset	:	IN	STD_LOGIC; 
           Clk	:	IN	STD_LOGIC; 
           NewData	:	OUT	STD_LOGIC; 
@@ -42,6 +43,7 @@ ARCHITECTURE behavioral OF adxl345_i2c_sch_tb IS
    SIGNAL SDA	:	STD_LOGIC;
    SIGNAL SCL	:	STD_LOGIC;
    SIGNAL NACK	:	STD_LOGIC;
+	SIGNAL INT1 : STD_LOGIC := '1';
    SIGNAL Reset	:	STD_LOGIC := '0';
    SIGNAL Clk	:	STD_LOGIC;
    SIGNAL NewData	:	STD_LOGIC;
@@ -59,7 +61,8 @@ BEGIN
 		DataRate => DataRate, 
 		SDA => SDA, 
 		SCL => SCL, 
-		NACK => NACK, 
+		NACK => NACK,
+		INT1 => INT1,
 		Reset => Reset, 
 		Clk => Clk, 
 		NewData => NewData, 
@@ -76,6 +79,25 @@ BEGIN
 		Clk <= '1';
 		wait for Clk_period/2;
    end process clk_process;
+	
+-- TODO
+-- add process simulating interrupts
+-- on data ready
+-------------------------
+-- Output Data  
+-- Rate (Hz) 	Rate Code
+-------------------------
+-- 3200 			1111
+-- 1600 			1110
+-- 800 			1101
+-- 400  			1100
+-- 200 			1011
+-- 100 			1010
+-- 50				1001
+-- 25 			1000
+-- 12.5 			0111
+-- 6.25  		0110
+-------------------------
 
 	SDA <= 'H';
    SCL <= 'H';

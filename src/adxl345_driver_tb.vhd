@@ -47,6 +47,7 @@ ARCHITECTURE behavior OF adxl345_driver_tb IS
          FIFO_Empty : IN  std_logic;
          FIFO_Full : IN  std_logic;
          DataRate : IN  std_logic_vector(3 downto 0);
+			INT1 : in STD_LOGIC;
          Busy : IN  std_logic;
          Go : OUT  std_logic;
          FIFO_Push : OUT  std_logic;
@@ -71,6 +72,7 @@ ARCHITECTURE behavior OF adxl345_driver_tb IS
    signal FIFO_Full : std_logic := '0';
    signal DataRate : std_logic_vector(3 downto 0) := (others => '0');
    signal Busy : std_logic := '0';
+	signal INT1 : STD_LOGIC := '1'; -- !!!
 
  	--Outputs
    signal Go : std_logic;
@@ -97,6 +99,7 @@ BEGIN
           FIFO_DO => FIFO_DO,
           FIFO_Empty => FIFO_Empty,
           FIFO_Full => FIFO_Full,
+			 INT1 => INT1,
           DataRate => DataRate,
           Busy => Busy,
           Go => Go,

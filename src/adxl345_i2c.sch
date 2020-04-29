@@ -27,6 +27,7 @@
         <signal name="XLXN_74" />
         <signal name="XLXN_75" />
         <signal name="XLXN_76(7:0)" />
+        <signal name="INT1" />
         <port polarity="Input" name="DataRate(3:0)" />
         <port polarity="BiDirectional" name="SDA" />
         <port polarity="BiDirectional" name="SCL" />
@@ -38,6 +39,7 @@
         <port polarity="Output" name="X(15:0)" />
         <port polarity="Output" name="Y(15:0)" />
         <port polarity="Output" name="Z(15:0)" />
+        <port polarity="Input" name="INT1" />
         <blockdef name="I2C_Master">
             <timestamp>2020-4-7T13:33:35</timestamp>
             <rect width="336" x="64" y="-512" height="572" />
@@ -62,8 +64,7 @@
             <line x2="464" y1="32" y2="32" x1="400" />
         </blockdef>
         <blockdef name="adxl345_driver">
-            <timestamp>2020-4-8T10:3:22</timestamp>
-            <rect width="320" x="64" y="-704" height="704" />
+            <timestamp>2020-4-29T18:48:2</timestamp>
             <line x2="448" y1="-672" y2="-672" x1="384" />
             <rect width="64" x="384" y="-236" height="24" />
             <line x2="448" y1="-224" y2="-224" x1="384" />
@@ -91,6 +92,8 @@
             <rect width="64" x="0" y="-268" height="24" />
             <line x2="0" y1="-256" y2="-256" x1="64" />
             <line x2="0" y1="-128" y2="-128" x1="64" />
+            <rect width="320" x="64" y="-704" height="768" />
+            <line x2="0" y1="-336" y2="-336" x1="64" />
         </blockdef>
         <block symbolname="I2C_Master" name="XLXI_1">
             <blockpin signalname="XLXN_1" name="Go" />
@@ -128,6 +131,7 @@
             <blockpin signalname="X(15:0)" name="X(15:0)" />
             <blockpin signalname="Y(15:0)" name="Y(15:0)" />
             <blockpin signalname="Z(15:0)" name="Z(15:0)" />
+            <blockpin signalname="INT1" name="INT1" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -261,5 +265,10 @@
         <instance x="1376" y="1584" name="XLXI_2" orien="R0">
         </instance>
         <iomarker fontsize="28" x="1136" y="1328" name="DataRate(3:0)" orien="R180" />
+        <branch name="INT1">
+            <wire x2="1360" y1="1248" y2="1248" x1="1136" />
+            <wire x2="1376" y1="1248" y2="1248" x1="1360" />
+        </branch>
+        <iomarker fontsize="28" x="1136" y="1248" name="INT1" orien="R180" />
     </sheet>
 </drawing>
