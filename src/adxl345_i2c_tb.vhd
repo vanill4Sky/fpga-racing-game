@@ -54,6 +54,7 @@ ARCHITECTURE behavioral OF adxl345_i2c_sch_tb IS
 	
 			   -- Clock period definitions
    constant Clk_period : time := 20 ns;
+	constant min_new_data_period : time := 312.5 us;
 
 BEGIN
 
@@ -80,9 +81,6 @@ BEGIN
 		wait for Clk_period/2;
    end process clk_process;
 	
--- TODO
--- add process simulating interrupts
--- on data ready
 -------------------------
 -- Output Data  
 -- Rate (Hz) 	Rate Code
@@ -98,6 +96,14 @@ BEGIN
 -- 12.5 			0111
 -- 6.25  		0110
 -------------------------
+	data_ready_int : process
+		variable exp : std_logic_vector(3 downto 0) := not DataRate;
+   begin
+		INT1 <= '0';
+		wait for min_new_data_period * (2 ** to_integer(unsigned(exp))) / 2;
+		INT1 <= '1';
+		wait for Clk_period;
+   end process data_ready_int;
 
 	SDA <= 'H';
    SCL <= 'H';
