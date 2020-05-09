@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_i2c_sch_tb_isim_beh.exe" -prj "C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_i2c_sch_tb_beh.prj" "work.adxl345_i2c_sch_tb" 
+-intstyle "ise" -incremental -o "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_isim_beh.exe" -prj "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_beh.prj" "work.vga_control" 
