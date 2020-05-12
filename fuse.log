@@ -1,9 +1,0 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -o C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_isim_beh.exe -prj C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_beh.prj work.vga_control 
-ISim P.20131013 (signature 0x7708f090)
-Number of CPUs detected in this system: 8
-Turning on mult-threading, number of parallel sub-compilation jobs: 16 
-Determining compilation order of HDL files
-Parsing VHDL file "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control.vhd" into library work
-Starting static elaboration
-ERROR:HDLCompiler:299 - "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control.vhd" Line 133: case statement does not cover all choices. 'others' clause is needed
-ERROR:Simulator:777 - Static elaboration of top level VHDL design unit vga_control in library work failed

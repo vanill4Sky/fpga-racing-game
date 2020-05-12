@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_isim_beh.exe" -prj "C:/Users/Pawel/Documents/Studia/Semestr 6/UCISW/fpga-racing-game-feature-vga-txt/vga_control_beh.prj" "work.vga_control" 
+-intstyle "ise" -incremental -o "C:/Users/foxglove/Desktop/fpga-racing-game/vga_control_tb_isim_beh.exe" -prj "C:/Users/foxglove/Desktop/fpga-racing-game/vga_control_tb_beh.prj" "work.vga_control_tb" 
