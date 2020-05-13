@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -o "C:/Users/foxglove/Desktop/fpga-racing-game/vga_txt_driver_tb_isim_beh.exe" -prj "C:/Users/foxglove/Desktop/fpga-racing-game/vga_txt_driver_tb_beh.prj" "work.vga_txt_driver_tb" 
+-intstyle "ise" -incremental -o "C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_vga_tb_isim_beh.exe" -prj "C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_vga_tb_beh.prj" "work.adxl345_vga_tb" 

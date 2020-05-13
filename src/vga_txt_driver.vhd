@@ -69,7 +69,7 @@ architecture Behavioral of vga_txt_driver is
 
 	signal state, next_state: state_t;
 	
-	signal measurements_cnt : integer range 0 to 2**12 - 1 := 15;
+	signal measurements_cnt : integer range 0 to 2**12 - 1 := 0;
 	signal measurements_cnt_vector : std_logic_vector(11 downto 0);
 	signal char_count : integer range 0 to 15 := 0;
 	signal end_of_data : std_logic := '0';
@@ -243,6 +243,9 @@ begin
 	increment_measurements_cnt : process(Clk, state, next_state)
 	begin
 		if rising_edge(Clk) then
+			if Reset = '1' then
+				measurements_cnt <= 0;
+			end if;
 			if state = inc_id then
 				measurements_cnt <= measurements_cnt + 1;
 			end if;

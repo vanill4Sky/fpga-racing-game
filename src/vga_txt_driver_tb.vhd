@@ -81,7 +81,7 @@ ARCHITECTURE behavior OF vga_txt_driver_tb IS
    signal ScrollClear : std_logic;
 
    -- Clock period definitions
-   constant Clk_period : time := 40 ns;
+   constant Clk_period : time := 20 ns;
  
 BEGIN
  
@@ -174,29 +174,16 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
 		Reset <= '1';
-      wait for 1000 ns;
+      wait for 1 us;
 		Reset <= '0';
       wait for Clk_period/2;
 		
-		NewData <= '1';
-		wait for Clk_period;
-		NewData <= '0';
-		wait for Clk_period * 200;
-		NewData <= '1';
-		wait for Clk_period;
-		NewData <= '0';
-		wait for Clk_period * 200;
-		NewData <= '1';
-		wait for Clk_period;
-		NewData <= '0';
-		wait for Clk_period * 200;
-		NewData <= '1';
-		wait for Clk_period;
-		NewData <= '0';
-		wait for Clk_period * 200;
-
-      -- insert stimulus here 
-
+		for i in 0 to 256 loop
+			NewData <= '1';
+			wait for Clk_period;
+			NewData <= '0';
+			wait for Clk_period * 100;		
+		end loop;
       wait;
    end process;
 
