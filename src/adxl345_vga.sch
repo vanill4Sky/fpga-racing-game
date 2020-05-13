@@ -6,6 +6,30 @@
         <trait edittrait="all:0" />
     </attr>
     <netlist>
+        <signal name="XLXN_1" />
+        <signal name="XLXN_2" />
+        <signal name="XLXN_3" />
+        <signal name="XLXN_4(15:0)" />
+        <signal name="XLXN_5(15:0)" />
+        <signal name="XLXN_6(15:0)" />
+        <signal name="XLXN_7(3:0)" />
+        <signal name="XLXN_8" />
+        <signal name="XLXN_9(7:0)" />
+        <signal name="XLXN_10" />
+        <signal name="XLXN_11" />
+        <signal name="XLXN_12" />
+        <signal name="XLXN_13" />
+        <signal name="XLXN_14" />
+        <signal name="XLXN_15" />
+        <signal name="XLXN_16" />
+        <signal name="XLXN_17" />
+        <signal name="XLXN_18" />
+        <signal name="XLXN_19" />
+        <signal name="XLXN_20" />
+        <signal name="XLXN_21" />
+        <signal name="XLXN_22" />
+        <signal name="XLXN_25" />
+        <signal name="XLXN_26" />
         <blockdef name="VGAtxt48x20">
             <timestamp>2008-9-4T9:59:2</timestamp>
             <rect width="304" x="64" y="-640" height="728" />
@@ -46,35 +70,75 @@
             <line x2="448" y1="-96" y2="-96" x1="384" />
             <line x2="448" y1="-32" y2="-32" x1="384" />
         </blockdef>
+        <blockdef name="vga_txt_driver">
+            <timestamp>2020-5-13T12:44:47</timestamp>
+            <rect width="256" x="64" y="-512" height="512" />
+            <line x2="0" y1="-480" y2="-480" x1="64" />
+            <line x2="0" y1="-416" y2="-416" x1="64" />
+            <rect width="64" x="0" y="-236" height="24" />
+            <line x2="0" y1="-224" y2="-224" x1="64" />
+            <rect width="64" x="0" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="0" y1="-96" y2="-96" x1="64" />
+            <line x2="0" y1="-352" y2="-352" x1="64" />
+            <line x2="0" y1="-288" y2="-288" x1="64" />
+            <rect width="64" x="320" y="-492" height="24" />
+            <line x2="384" y1="-480" y2="-480" x1="320" />
+            <line x2="384" y1="-416" y2="-416" x1="320" />
+            <line x2="384" y1="-352" y2="-352" x1="320" />
+            <line x2="384" y1="-288" y2="-288" x1="320" />
+            <line x2="384" y1="-224" y2="-224" x1="320" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <line x2="384" y1="-96" y2="-96" x1="320" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+        </blockdef>
         <block symbolname="VGAtxt48x20" name="XLXI_1">
-            <blockpin name="Char_DI(7:0)" />
-            <blockpin name="Home" />
-            <blockpin name="NewLine" />
-            <blockpin name="Goto00" />
-            <blockpin name="Clk_Sys" />
-            <blockpin name="Clk_50MHz" />
-            <blockpin name="CursorOn" />
-            <blockpin name="ScrollEn" />
-            <blockpin name="ScrollClear" />
-            <blockpin name="Busy" />
-            <blockpin name="VGA_HS" />
-            <blockpin name="VGA_VS" />
-            <blockpin name="VGA_RGB" />
-            <blockpin name="Char_WE" />
+            <blockpin signalname="XLXN_9(7:0)" name="Char_DI(7:0)" />
+            <blockpin signalname="XLXN_11" name="Home" />
+            <blockpin signalname="XLXN_12" name="NewLine" />
+            <blockpin signalname="XLXN_13" name="Goto00" />
+            <blockpin signalname="XLXN_18" name="Clk_Sys" />
+            <blockpin signalname="XLXN_18" name="Clk_50MHz" />
+            <blockpin signalname="XLXN_14" name="CursorOn" />
+            <blockpin signalname="XLXN_15" name="ScrollEn" />
+            <blockpin signalname="XLXN_16" name="ScrollClear" />
+            <blockpin signalname="XLXN_22" name="Busy" />
+            <blockpin signalname="XLXN_19" name="VGA_HS" />
+            <blockpin signalname="XLXN_20" name="VGA_VS" />
+            <blockpin signalname="XLXN_21" name="VGA_RGB" />
+            <blockpin signalname="XLXN_10" name="Char_WE" />
         </block>
         <block symbolname="adxl345_i2c" name="XLXI_2">
-            <blockpin name="DataRate(3:0)" />
-            <blockpin name="Reset" />
-            <blockpin name="Clk" />
-            <blockpin name="INT1" />
+            <blockpin signalname="XLXN_7(3:0)" name="DataRate(3:0)" />
+            <blockpin signalname="XLXN_1" name="Reset" />
+            <blockpin signalname="XLXN_18" name="Clk" />
+            <blockpin signalname="XLXN_8" name="INT1" />
             <blockpin name="NACK" />
-            <blockpin name="NewData" />
+            <blockpin signalname="XLXN_3" name="NewData" />
             <blockpin name="Device_ID(7:0)" />
-            <blockpin name="X(15:0)" />
-            <blockpin name="Y(15:0)" />
-            <blockpin name="Z(15:0)" />
-            <blockpin name="SDA" />
-            <blockpin name="SCL" />
+            <blockpin signalname="XLXN_4(15:0)" name="X(15:0)" />
+            <blockpin signalname="XLXN_5(15:0)" name="Y(15:0)" />
+            <blockpin signalname="XLXN_6(15:0)" name="Z(15:0)" />
+            <blockpin signalname="XLXN_25" name="SDA" />
+            <blockpin signalname="XLXN_26" name="SCL" />
+        </block>
+        <block symbolname="vga_txt_driver" name="XLXI_3">
+            <blockpin signalname="XLXN_1" name="Reset" />
+            <blockpin signalname="XLXN_22" name="Busy" />
+            <blockpin signalname="XLXN_4(15:0)" name="X(15:0)" />
+            <blockpin signalname="XLXN_5(15:0)" name="Y(15:0)" />
+            <blockpin signalname="XLXN_6(15:0)" name="Z(15:0)" />
+            <blockpin signalname="XLXN_3" name="NewData" />
+            <blockpin signalname="XLXN_18" name="Clk" />
+            <blockpin signalname="XLXN_9(7:0)" name="Char_DI(7:0)" />
+            <blockpin signalname="XLXN_10" name="Char_WE" />
+            <blockpin signalname="XLXN_11" name="Home" />
+            <blockpin signalname="XLXN_12" name="NewLine" />
+            <blockpin signalname="XLXN_13" name="Goto00" />
+            <blockpin signalname="XLXN_14" name="CursorOn" />
+            <blockpin signalname="XLXN_15" name="ScrollEn" />
+            <blockpin signalname="XLXN_16" name="ScrollClear" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -82,5 +146,114 @@
         </instance>
         <instance x="944" y="1344" name="XLXI_2" orien="R0">
         </instance>
+        <instance x="1744" y="1360" name="XLXI_3" orien="R0">
+        </instance>
+        <branch name="XLXN_1">
+            <wire x2="848" y1="1008" y2="1008" x1="640" />
+            <wire x2="944" y1="1008" y2="1008" x1="848" />
+            <wire x2="1728" y1="672" y2="672" x1="848" />
+            <wire x2="1728" y1="672" y2="880" x1="1728" />
+            <wire x2="1744" y1="880" y2="880" x1="1728" />
+            <wire x2="848" y1="672" y2="1008" x1="848" />
+        </branch>
+        <branch name="XLXN_3">
+            <wire x2="1568" y1="928" y2="928" x1="1392" />
+            <wire x2="1568" y1="928" y2="1008" x1="1568" />
+            <wire x2="1744" y1="1008" y2="1008" x1="1568" />
+        </branch>
+        <branch name="XLXN_4(15:0)">
+            <wire x2="1568" y1="1056" y2="1056" x1="1392" />
+            <wire x2="1568" y1="1056" y2="1136" x1="1568" />
+            <wire x2="1744" y1="1136" y2="1136" x1="1568" />
+        </branch>
+        <branch name="XLXN_5(15:0)">
+            <wire x2="1552" y1="1120" y2="1120" x1="1392" />
+            <wire x2="1552" y1="1120" y2="1200" x1="1552" />
+            <wire x2="1744" y1="1200" y2="1200" x1="1552" />
+        </branch>
+        <branch name="XLXN_6(15:0)">
+            <wire x2="1536" y1="1184" y2="1184" x1="1392" />
+            <wire x2="1536" y1="1184" y2="1264" x1="1536" />
+            <wire x2="1744" y1="1264" y2="1264" x1="1536" />
+        </branch>
+        <branch name="XLXN_7(3:0)">
+            <wire x2="944" y1="864" y2="864" x1="624" />
+        </branch>
+        <branch name="XLXN_8">
+            <wire x2="944" y1="1296" y2="1296" x1="624" />
+        </branch>
+        <branch name="XLXN_9(7:0)">
+            <wire x2="2272" y1="880" y2="880" x1="2128" />
+            <wire x2="2272" y1="848" y2="880" x1="2272" />
+            <wire x2="2432" y1="848" y2="848" x1="2272" />
+        </branch>
+        <branch name="XLXN_10">
+            <wire x2="2272" y1="944" y2="944" x1="2128" />
+            <wire x2="2272" y1="912" y2="944" x1="2272" />
+            <wire x2="2432" y1="912" y2="912" x1="2272" />
+        </branch>
+        <branch name="XLXN_11">
+            <wire x2="2432" y1="1008" y2="1008" x1="2128" />
+        </branch>
+        <branch name="XLXN_12">
+            <wire x2="2432" y1="1072" y2="1072" x1="2128" />
+        </branch>
+        <branch name="XLXN_13">
+            <wire x2="2432" y1="1136" y2="1136" x1="2128" />
+        </branch>
+        <branch name="XLXN_14">
+            <wire x2="2272" y1="1200" y2="1200" x1="2128" />
+            <wire x2="2272" y1="1200" y2="1232" x1="2272" />
+            <wire x2="2432" y1="1232" y2="1232" x1="2272" />
+        </branch>
+        <branch name="XLXN_15">
+            <wire x2="2272" y1="1264" y2="1264" x1="2128" />
+            <wire x2="2272" y1="1264" y2="1296" x1="2272" />
+            <wire x2="2432" y1="1296" y2="1296" x1="2272" />
+        </branch>
+        <branch name="XLXN_16">
+            <wire x2="2272" y1="1328" y2="1328" x1="2128" />
+            <wire x2="2272" y1="1328" y2="1360" x1="2272" />
+            <wire x2="2432" y1="1360" y2="1360" x1="2272" />
+        </branch>
+        <branch name="XLXN_18">
+            <wire x2="896" y1="1152" y2="1152" x1="640" />
+            <wire x2="944" y1="1152" y2="1152" x1="896" />
+            <wire x2="896" y1="1152" y2="1456" x1="896" />
+            <wire x2="2288" y1="1456" y2="1456" x1="896" />
+            <wire x2="2432" y1="1456" y2="1456" x1="2288" />
+            <wire x2="2288" y1="1456" y2="1520" x1="2288" />
+            <wire x2="2432" y1="1520" y2="1520" x1="2288" />
+            <wire x2="1680" y1="720" y2="720" x1="896" />
+            <wire x2="1680" y1="720" y2="1072" x1="1680" />
+            <wire x2="1744" y1="1072" y2="1072" x1="1680" />
+            <wire x2="896" y1="720" y2="1152" x1="896" />
+        </branch>
+        <branch name="XLXN_19">
+            <wire x2="3056" y1="848" y2="848" x1="2864" />
+        </branch>
+        <branch name="XLXN_20">
+            <wire x2="3056" y1="912" y2="912" x1="2864" />
+        </branch>
+        <branch name="XLXN_21">
+            <wire x2="3056" y1="976" y2="976" x1="2864" />
+        </branch>
+        <branch name="XLXN_22">
+            <wire x2="2928" y1="624" y2="624" x1="1616" />
+            <wire x2="2928" y1="624" y2="1104" x1="2928" />
+            <wire x2="1616" y1="624" y2="944" x1="1616" />
+            <wire x2="1744" y1="944" y2="944" x1="1616" />
+            <wire x2="2928" y1="1104" y2="1104" x1="2864" />
+        </branch>
+        <branch name="XLXN_25">
+            <wire x2="1504" y1="1248" y2="1248" x1="1392" />
+            <wire x2="1504" y1="1248" y2="1600" x1="1504" />
+            <wire x2="3040" y1="1600" y2="1600" x1="1504" />
+        </branch>
+        <branch name="XLXN_26">
+            <wire x2="1440" y1="1312" y2="1312" x1="1392" />
+            <wire x2="1440" y1="1312" y2="1664" x1="1440" />
+            <wire x2="3040" y1="1664" y2="1664" x1="1440" />
+        </branch>
     </sheet>
 </drawing>

@@ -4,7 +4,7 @@
 -- 
 -- Create Date:    09:23:19 05/09/2020 
 -- Design Name: 
--- Module Name:    vga_control - Behavioral 
+-- Module Name:    vga_txt_driver - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -30,7 +30,7 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity vga_control is
+entity vga_txt_driver is
     Port ( Reset : in  STD_LOGIC;
 			  Busy : in  STD_LOGIC;
            NewData : in  STD_LOGIC;
@@ -46,9 +46,9 @@ entity vga_control is
            CursorOn : out  STD_LOGIC;
            ScrollEn : out  STD_LOGIC;
            ScrollClear : out  STD_LOGIC);
-end vga_control;
+end vga_txt_driver;
 
-architecture Behavioral of vga_control is
+architecture Behavioral of vga_txt_driver is
 
 	type state_t is (
 		init,

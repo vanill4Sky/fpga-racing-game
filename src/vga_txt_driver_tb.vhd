@@ -4,13 +4,13 @@
 --
 -- Create Date:   21:41:37 05/12/2020
 -- Design Name:   
--- Module Name:   C:/Users/foxglove/Desktop/fpga-racing-game/vga_control_tb.vhd
+-- Module Name:   C:/Users/foxglove/Desktop/fpga-racing-game/vga_txt_driver_tb.vhd
 -- Project Name:  fpga_racing_game
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: vga_control
+-- VHDL Test Bench Created by ISE for module: vga_txt_driver
 -- 
 -- Dependencies:
 -- 
@@ -33,14 +33,14 @@ use ieee.std_logic_textio.all;
 LIBRARY std;
 use std.textio.all;
 
-ENTITY vga_control_tb IS
-END vga_control_tb;
+ENTITY vga_txt_driver_tb IS
+END vga_txt_driver_tb;
  
-ARCHITECTURE behavior OF vga_control_tb IS 
+ARCHITECTURE behavior OF vga_txt_driver_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT vga_control
+    COMPONENT vga_txt_driver
     PORT(
          Reset : IN  std_logic;
          Busy : IN  std_logic;
@@ -86,7 +86,7 @@ ARCHITECTURE behavior OF vga_control_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: vga_control PORT MAP (
+   uut: vga_txt_driver PORT MAP (
           Reset => Reset,
           Busy => Busy,
           NewData => NewData,
