@@ -150,6 +150,8 @@ BEGIN
 						write(output, "E");
 					when X"46" =>
 						write(output, "F");
+					when X"3A" =>
+						write(output, ":");
 					when others =>
 						write(output, " ");
 				end case;
@@ -172,7 +174,7 @@ BEGIN
    begin		
       -- hold reset state for 100 ns.
 		Reset <= '1';
-      wait for 100 ns;
+      wait for 1000 ns;
 		Reset <= '0';
       wait for Clk_period/2;
 		

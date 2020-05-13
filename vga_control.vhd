@@ -53,14 +53,19 @@ architecture Behavioral of vga_control is
 	type state_t is (
 		init,
 		busy_wait,
-		store_id_nibble, convert_id_nibble, write_id_char, fetch_id_nibble, check_id_nibble, inc_id,
+		store_id_nibble, convert_id_nibble, write_id_char, fetch_id_nibble, check_id_nibble, inc_id, 
+		write_id_delimiter,
 		store_data_nibble, convert_data_nibble, write_data_char, fetch_data_nibble, check_data_nibble,
+		check_end_of_value, write_end_of_value,
 		break_line
 	);
 	
 	constant SET_CURSORON 		: std_logic := '1';
 	constant SET_SCROLLEN 		: std_logic := '0';
 	constant SET_SCROLLCLEAR 	: std_logic := '0';
+	
+	constant END_OF_ID_DELIMITER : std_logic_vector(7 downto 0) 	:= X"3A";
+	constant END_OF_VALUE_DELIMITER : std_logic_vector(7 downto 0) := X"20";
 
 	signal state, next_state: state_t;
 	
@@ -68,6 +73,7 @@ architecture Behavioral of vga_control is
 	signal measurements_cnt_vector : std_logic_vector(11 downto 0);
 	signal char_count : integer range 0 to 15 := 0;
 	signal end_of_data : std_logic := '0';
+	signal end_of_value : std_logic := '0';
 	signal current_data_nibble : std_logic_vector(3 downto 0);
 	signal current_character : std_logic_vector(7 downto 0);	
 	
@@ -110,6 +116,8 @@ begin
 					next_state <= store_id_nibble;
 				end if;
 			when inc_id =>
+				next_state <= write_id_delimiter;
+			when write_id_delimiter =>
 				next_state <= store_data_nibble;
 			when store_data_nibble =>
 				next_state <= convert_data_nibble;
@@ -118,6 +126,14 @@ begin
 			when write_data_char => 
 				next_state <= fetch_data_nibble;
 			when fetch_data_nibble => 
+				next_state <= check_end_of_value;
+			when check_end_of_value =>
+				if end_of_value = '1' then
+					next_state <= write_end_of_value;
+				else
+					next_state <= check_data_nibble;
+				end if;
+			when write_end_of_value =>
 				next_state <= check_data_nibble;
 			when check_data_nibble =>
 				if end_of_data = '1' then
@@ -213,7 +229,13 @@ begin
 				else
 					char_count <= char_count + 1;
 					end_of_data <= '0';
-				end if;	
+				end if;
+				
+				if char_count = 3 or char_count = 7 or char_count = 11 then
+					end_of_value <= '1';
+				else
+					end_of_value <= '0';
+				end if;
 			end if;
 		end if;
 	end process count_character;
@@ -232,9 +254,12 @@ begin
 	ScrollClear 	<=	SET_SCROLLCLEAR;
 	
 	Char_DI			<= current_character when state = write_id_char or state = write_data_char else
+							END_OF_ID_DELIMITER when state = write_id_delimiter else
+							END_OF_VALUE_DELIMITER when state = write_end_of_value else
 							"00000000";
-	
-	Char_WE 			<= '1' when state = write_id_char or state = write_data_char else
+
+	Char_WE 			<= '1' when state = write_id_char or state = write_data_char
+								or state = write_id_delimiter or state = write_end_of_value else
 							'0';
 	
 	Home				<= '0';
