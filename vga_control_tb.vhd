@@ -27,11 +27,12 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+USE ieee.numeric_std.ALL;
+use ieee.std_logic_textio.all;
+
+LIBRARY std;
+use std.textio.all;
+
 ENTITY vga_control_tb IS
 END vga_control_tb;
  
@@ -111,7 +112,60 @@ BEGIN
 		Clk <= '1';
 		wait for Clk_period/2;
    end process;
- 
+	
+	process(Clk, Char_WE)
+	begin
+		if rising_edge(Clk) then
+			if Char_WE = '1' then
+				case Char_DI is
+					when X"30" =>
+						write(output, "0");
+					when X"31" =>
+						write(output, "1");
+					when X"32" =>
+						write(output, "2");
+					when X"33" =>
+						write(output, "3");
+					when X"34" =>
+						write(output, "4");
+					when X"35" =>
+						write(output, "5");
+					when X"36" =>
+						write(output, "6");
+					when X"37" =>
+						write(output, "7");
+					when X"38" =>
+						write(output, "8");
+					when X"39" =>
+						write(output, "9");
+					when X"41" =>
+						write(output, "A");
+					when X"42" =>
+						write(output, "B");
+					when X"43" =>
+						write(output, "C");
+					when X"44" =>
+						write(output, "D");
+					when X"45" =>
+						write(output, "E");
+					when X"46" =>
+						write(output, "F");
+					when others =>
+						write(output, " ");
+				end case;
+			end if;
+		end if;
+	end process;
+	
+	process(Clk, NewLine)
+		variable L : line;
+	begin
+		if rising_edge(Clk) then
+			if NewLine = '1' then
+				writeline( output, L );
+			end if;
+		end if;
+	end process;
 
    -- Stimulus process
    stim_proc: process

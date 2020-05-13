@@ -51,12 +51,14 @@ end vga_control;
 architecture Behavioral of vga_control is
 
 	type state_t is (
+		init,
 		busy_wait,
 		store_id_nibble, convert_id_nibble, write_id_char, fetch_id_nibble, check_id_nibble, inc_id,
-		store_data_nibble, convert_data_nibble, write_data_char, fetch_data_nibble, check_data_nibble
+		store_data_nibble, convert_data_nibble, write_data_char, fetch_data_nibble, check_data_nibble,
+		break_line
 	);
 	
-	constant SET_CURSORON 		: std_logic := '0';
+	constant SET_CURSORON 		: std_logic := '1';
 	constant SET_SCROLLEN 		: std_logic := '0';
 	constant SET_SCROLLCLEAR 	: std_logic := '0';
 
@@ -75,7 +77,7 @@ begin
 	begin
 		if rising_edge(Clk) then
 			if Reset = '1' then
-				state <= busy_wait;
+				state <= init;
 			else
 				state <= next_state;
 			end if;
@@ -87,6 +89,8 @@ begin
 		next_state <= state;
 		
 		case state is
+			when init =>
+				next_state <= busy_wait;
 			when busy_wait =>
 				if NewData = '1' then
 					next_state <= store_id_nibble;
@@ -117,10 +121,12 @@ begin
 				next_state <= check_data_nibble;
 			when check_data_nibble =>
 				if end_of_data = '1' then
-					next_state <= busy_wait;
+					next_state <= break_line;
 				else
 					next_state <= store_data_nibble;
 				end if;
+			when break_line =>
+				next_state <= busy_wait;
 		end case;
 	end process fsm_transition;
 	
@@ -231,7 +237,13 @@ begin
 	Char_WE 			<= '1' when state = write_id_char or state = write_data_char else
 							'0';
 	
-	NewLine			<= '0';
+	Home				<= '0';
+	
+	Goto00			<= '1' when state = init else
+							'0';
+	
+	NewLine			<= '1' when state = break_line else
+							'0';
 	
 
 end Behavioral;
