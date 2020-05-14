@@ -90,7 +90,7 @@ begin
 		end if;
 	end process fsm_main;
 	
-	fsm_transition : process(state, NewData, end_of_data)
+	fsm_transition : process(state, NewData, end_of_data, end_of_value)
 	begin
 		next_state <= state;
 		

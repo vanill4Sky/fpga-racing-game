@@ -1,2 +1,0 @@
-sch2hdl,-intstyle,ise,-family,spartan3e,-flat,-suppress,-vhdl,C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_i2c.vhf,-w,C:/Users/foxglove/Desktop/fpga-racing-game/src/adxl345_i2c.sch
-sch2hdl,-intstyle,ise,-family,spartan3e,-flat,-suppress,-vhdl,C:/Users/foxglove/Desktop/fpga-racing-game/adxl345_vga.vhf,-w,C:/Users/foxglove/Desktop/fpga-racing-game/src/adxl345_vga.sch

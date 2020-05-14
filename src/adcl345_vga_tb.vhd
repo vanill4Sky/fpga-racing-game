@@ -40,7 +40,7 @@ ARCHITECTURE behavioral OF adxl345_vga_tb IS
    END COMPONENT;
 
    SIGNAL Reset	:	STD_LOGIC := '0';
-   SIGNAL DataRate	:	STD_LOGIC_VECTOR (3 DOWNTO 0) := X"A";
+   SIGNAL DataRate	:	STD_LOGIC_VECTOR (3 DOWNTO 0) := X"B";
    SIGNAL INT1	:	STD_LOGIC := '1';
    SIGNAL Char_DI	:	STD_LOGIC_VECTOR (7 DOWNTO 0);
    SIGNAL Char_WE	:	STD_LOGIC;
@@ -99,7 +99,7 @@ BEGIN
 		variable exp : std_logic_vector(3 downto 0) := not DataRate;
    begin
 		INT1 <= '0';
-		wait for min_new_data_period * (2 ** to_integer(unsigned(exp))) / 2;
+		wait for min_new_data_period * (2 ** to_integer(unsigned(exp)));
 		INT1 <= '1';
 		wait for Clk_period;
    end process data_ready_int;
