@@ -1,0 +1,5 @@
+# Accelerometer GY-291 connected to Header J4 (Spartan-3E Starter Board)
+NET "SCL"  LOC = "D7"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6;
+NET "SDA"  LOC = "C7"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6;
+NET "INT1"  LOC = "E8"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6;
+#NET "INT2" LOC = "F8"  | IOSTANDARD = LVTTL | SLEW = SLOW | DRIVE = 6;
