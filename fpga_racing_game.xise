@@ -72,10 +72,10 @@
       <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="50"/>
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="50"/>
     </file>
-    <file xil_pn:name="src/GenIO.ucf" xil_pn:type="FILE_UCF">
+    <file xil_pn:name="src/Accel_J4.ucf" xil_pn:type="FILE_UCF">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
-    <file xil_pn:name="src/Accel_J4.ucf" xil_pn:type="FILE_UCF">
+    <file xil_pn:name="src/GenIO.ucf" xil_pn:type="FILE_UCF">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
   </files>
@@ -201,6 +201,7 @@
     <property xil_pn:name="Language" xil_pn:value="VHDL" xil_pn:valueState="default"/>
     <property xil_pn:name="Last Applied Goal" xil_pn:value="Balanced" xil_pn:valueState="default"/>
     <property xil_pn:name="Last Applied Strategy" xil_pn:value="Xilinx Default (unlocked)" xil_pn:valueState="default"/>
+    <property xil_pn:name="Last Selected UCF File" xil_pn:value="" xil_pn:valueState="default"/>
     <property xil_pn:name="Last Unlock Status" xil_pn:value="false" xil_pn:valueState="default"/>
     <property xil_pn:name="Launch SDK after Export" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Library for Verilog Sources" xil_pn:value="" xil_pn:valueState="default"/>
@@ -385,8 +386,8 @@
   </properties>
 
   <bindings>
-    <binding xil_pn:location="/vga_txt_driver" xil_pn:name="src/GenIO.ucf"/>
     <binding xil_pn:location="/adxl345_vga" xil_pn:name="src/Accel_J4.ucf"/>
+    <binding xil_pn:location="/adxl345_vga" xil_pn:name="src/GenIO.ucf"/>
   </bindings>
 
   <libraries/>
